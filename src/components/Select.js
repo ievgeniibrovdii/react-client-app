@@ -6,19 +6,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import BootstrapInput from './css/BootstrapInput'
+import BootstrapInput from './css/BootstrapInput';
 
 class CustomizedSelects extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
+      title: '-',
     };
-    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleChangeTitle = this.handleChangeTitle.bind(this);
   }
 
-  handleChangeSort = event => {
-    this.setState({ title: event.target.value });
+  handleChangeTitle = event => {
+    event.preventDefault();
+    const sortFieldName = event.target.value;
+    this.setState({ title: sortFieldName });
+    this.props.sortBy(sortFieldName)
   };
 
   render() {
@@ -26,28 +29,26 @@ class CustomizedSelects extends React.Component {
 
     return (
       <form className={classes.root} autoComplete="off">
-
         <FormControl className={classes.margin}>
           <InputLabel htmlFor="title-customized-select" className={classes.bootstrapFormLabel}>
             Sort by:
           </InputLabel>
           <Select
             selected="selected"
-            value={this.state.data}
-            onChange={this.handleChangeSort}
+            value={this.state.title}
+            onChange={this.handleChangeTitle}
             input={<BootstrapInput name="title" id="title-customized-select" />}
           >
-            <MenuItem value="All">
+            <MenuItem value="-">
               <em>-</em>
             </MenuItem>
-            <MenuItem value="First Name">First Name</MenuItem>
-            <MenuItem value="Last Name">Last Name</MenuItem>
-            <MenuItem value="Phone">Phone</MenuItem>
-            <MenuItem value="Age">Age</MenuItem>
-            <MenuItem value="Gender">Gender</MenuItem>
+            <MenuItem value="fname">First Name</MenuItem>
+            <MenuItem value="lname">Last Name</MenuItem>
+            <MenuItem value="phone">Phone</MenuItem>
+            <MenuItem value="age">Age</MenuItem>
+            <MenuItem value="gender">Gender</MenuItem>
           </Select>
         </FormControl>
-
       </form>
     );
   }

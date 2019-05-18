@@ -6,21 +6,19 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import styles from './css/AddButtonStyles'
 
-function AddButton(props) {
+function ClearButton(props) {
   const { classes } = props;
   return (
     <div>
-      <Tooltip title="Add" aria-label="Add">
-        <Fab color="primary" aria-label="Add" className={classes.fab}>
-          <AddIcon />
-        </Fab>
-      </Tooltip>
+      <Fab variant="extended" aria-label="Edit" className={classes.fab}>
+          Clear
+      </Fab>
     </div>
   );
 }
 
-AddButton.propTypes = {
+ClearButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AddButton);
+export default withStyles(styles)(ClearButton);

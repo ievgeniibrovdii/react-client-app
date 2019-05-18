@@ -7,14 +7,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import AddButton from './AddButton'
-import DeleteButton from './DeleteButton'
+import DeleteButton from './DeleteButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import ClientForm from './ClientFormControl'
-import { CustomTableCell } from './css/TableStyles'
-import { styles } from './css/TableStyles'
+import ClientForm from './ClientFormControl';
+import CustomizedSelects from './Select';
+import { CustomTableCell } from './css/TableStyles';
+import { styles } from './css/TableStyles';
 
 class SimpleTable extends React.Component {
   constructor(props) {
@@ -58,43 +58,43 @@ class SimpleTable extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className="mainTable">
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <CustomTableCell onClick={() => this.sortBy('fname')} align="center">First Name</CustomTableCell>
-              <CustomTableCell onClick={() => this.sortBy('lname')} align="center">Last Name</CustomTableCell>
-              <CustomTableCell onClick={() => this.sortBy('phone')} align="center">Phone</CustomTableCell>
-              <CustomTableCell onClick={() => this.sortBy('age')} align="right">Age</CustomTableCell>
-              <CustomTableCell onClick={() => this.sortBy('gender')} align="right">Gender</CustomTableCell>
-              <CustomTableCell align="right"></CustomTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.people.map(row => (
-              <TableRow key={row.id}>
-                <CustomTableCell align="center" >
-                  {row.fname}
-                </CustomTableCell>
-                <CustomTableCell align="center">{row.lname}</CustomTableCell>
-                <CustomTableCell align="center">{row.phone}</CustomTableCell>
-                <CustomTableCell align="right">{row.age}</CustomTableCell>
-                <CustomTableCell align="right">{row.gender}</CustomTableCell>
-                <Tooltip title="Delete">
-                  <IconButton aria-label="Delete">
-                    <div className="deleteButtonWrapper" onClick={this.deletePerson(row.id)}>
-                      <DeleteButton />
-                    </div>
-                  </IconButton>
-                </Tooltip>
+      <div className="clientTableForm">
+        <CustomizedSelects sortBy={this.sortBy}/>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <CustomTableCell onClick={() => this.sortBy('fname')} align="center">First Name</CustomTableCell>
+                <CustomTableCell onClick={() => this.sortBy('lname')} align="center">Last Name</CustomTableCell>
+                <CustomTableCell onClick={() => this.sortBy('phone')} align="center">Phone</CustomTableCell>
+                <CustomTableCell onClick={() => this.sortBy('age')} align="right">Age</CustomTableCell>
+                <CustomTableCell onClick={() => this.sortBy('gender')} align="right">Gender</CustomTableCell>
+                <CustomTableCell align="right"></CustomTableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-
-      <ClientForm addPerson={this.addPerson}/>
+            </TableHead>
+            <TableBody>
+              {this.state.people.map(row => (
+                <TableRow key={row.id}>
+                  <CustomTableCell align="center" >
+                    {row.fname}
+                  </CustomTableCell>
+                  <CustomTableCell align="center">{row.lname}</CustomTableCell>
+                  <CustomTableCell align="center">{row.phone}</CustomTableCell>
+                  <CustomTableCell align="right">{row.age}</CustomTableCell>
+                  <CustomTableCell align="right">{row.gender}</CustomTableCell>
+                  <Tooltip title="Delete">
+                    <IconButton aria-label="Delete">
+                      <div className="deleteButtonWrapper" onClick={this.deletePerson(row.id)}>
+                        <DeleteButton />
+                      </div>
+                    </IconButton>
+                  </Tooltip>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
+        <ClientForm addPerson={this.addPerson}/>
       </div>
     );
   }

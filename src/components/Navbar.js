@@ -3,14 +3,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar'
-import TypoGraphy from '@material-ui/core/Typography'
-import { Link, NavLink, withRouter } from 'react-router-dom'
-
-const styles = {
-    textDecoration: 'none',
-    color: 'white' 
-}
+import Toolbar from '@material-ui/core/Toolbar';
+import TypoGraphy from '@material-ui/core/Typography';
+import { Link, NavLink, withRouter } from 'react-router-dom';
+import styles from './css/NavbarStyles';
 
 function NavBar(props) {
     return (
@@ -21,11 +17,11 @@ function NavBar(props) {
           >
             Home Page
          </TypoGraphy>
-         
+
          <List component="nav">
              <ListItem component="div">
                  <ListItemText inset>
-                       <Link style={styles} className="brand" to="/">ClientApp</Link>
+                    <Link style={styles} className="brand" to="/">ClientApp</Link>
                  </ListItemText>
              </ListItem >
          </List>
