@@ -25,13 +25,11 @@ const styles = theme => ({
 function AddButtonComponent(props) {
     const { classes } = props;
     return (
-        <div>
-            <Tooltip title="Add" aria-label="Add">
-                <Fab color="primary" aria-label="Add" className={classes.fab}>
-                    <AddIcon />
-                </Fab>
-            </Tooltip>
-        </div>
+        <Tooltip title="Add" aria-label="Add">
+            <Fab color="primary" aria-label="Add" className={classes.fab}>
+                <AddIcon />
+            </Fab>
+        </Tooltip>
     );
 }
 

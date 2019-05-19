@@ -9,7 +9,6 @@ import {
   InputBase, 
 } from '@material-ui/core';
 
-
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {
@@ -66,50 +65,50 @@ class CustomizedSelectsComponent extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '-',
+        title: '-',
     };
     this.handleChangeTitle = this.handleChangeTitle.bind(this);
   }
 
   handleChangeTitle = event => {
-    event.preventDefault();
-    const sortFieldName = event.target.value;
-    this.setState({ title: sortFieldName });
-    this.props.sortBy(sortFieldName)
+      event.preventDefault();
+      const sortFieldName = event.target.value;
+      this.setState({ title: sortFieldName });
+      this.props.sortBy(sortFieldName)
   };
 
   render() {
-    const { classes } = this.props;
+      const { classes } = this.props;
 
-    return (
-      <form className={classes.root} autoComplete="off">
-        <FormControl className={classes.margin}>
-          <InputLabel htmlFor="title-customized-select" className={classes.bootstrapFormLabel}>
-            Sort by:
-          </InputLabel>
-          <Select
-            selected="selected"
-            value={this.state.title}
-            onChange={this.handleChangeTitle}
-            input={<BootstrapInput name="title" id="title-customized-select" />}
-          >
-            <MenuItem value="-">
-              <em>-</em>
-            </MenuItem>
-            <MenuItem value="fname">First Name</MenuItem>
-            <MenuItem value="lname">Last Name</MenuItem>
-            <MenuItem value="phone">Phone</MenuItem>
-            <MenuItem value="age">Age</MenuItem>
-            <MenuItem value="gender">Gender</MenuItem>
-          </Select>
-        </FormControl>
-      </form>
-    );
-  }
+      return (
+        <form className={classes.root} autoComplete="off">
+            <FormControl className={classes.margin}>
+              <InputLabel htmlFor="title-customized-select" className={classes.bootstrapFormLabel}>
+                Sort by:
+              </InputLabel>
+              <Select
+                selected="selected"
+                value={this.state.title}
+                onChange={this.handleChangeTitle}
+                input={<BootstrapInput name="title" id="title-customized-select" />}
+              >
+                <MenuItem value="-">
+                  <em>-</em>
+                </MenuItem>
+                <MenuItem value="fname">First Name</MenuItem>
+                <MenuItem value="lname">Last Name</MenuItem>
+                <MenuItem value="phone">Phone</MenuItem>
+                <MenuItem value="age">Age</MenuItem>
+                <MenuItem value="gender">Gender</MenuItem>
+              </Select>
+            </FormControl>
+          </form>
+      );
+    }
 }
 
 CustomizedSelectsComponent.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export const CustomizedSelects = withStyles(styles)(CustomizedSelectsComponent);

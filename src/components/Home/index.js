@@ -1,12 +1,14 @@
 import React from 'react';
-import { SimpleTable } from '../';
+import { CustomizedSelects, ClientForm, SimpleTable } from '../../containers';
 
-function HomeComponent() {
-    return (
-        <div className="App">
-            <SimpleTable />
-        </div>
-    );
+class HomeComponent extends React.Component {
+    render(){
+        return (
+            <React.Fragment>
+                <SimpleTable />
+            </React.Fragment>
+        );
+    }
 }
 
 export const Home = HomeComponent;

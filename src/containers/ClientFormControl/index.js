@@ -8,7 +8,7 @@ import {
   Select, 
   OutlinedInput, 
 } from '@material-ui/core';
-import { AddButton, ClearButton } from '../';
+import { AddButton, ClearButton } from '../../components';
 
 const styles = theme => ({
   container: {
@@ -45,6 +45,10 @@ class ClientFormComponent extends React.Component {
       phone: '',
       age: '',
       gender: '',
+      helperfname: '',
+      helperlname: '',
+      helperphone: '',
+      helperage: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -52,19 +56,52 @@ class ClientFormComponent extends React.Component {
   }
 
   handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
+    const helper = `helper${name}`;
+    this.setState({ 
+        [helper]: '',
+        [name]: event.target.value, 
+    });
   };
 
    formSubmit(event) {
-    event.preventDefault();
-    const id = this.state.id;
-    const fname = this.state.fname;
-    const lname = this.state.lname;
-    const phone = this.state.phone;
-    const age = this.state.age;
-    const gender = this.state.gender;
-    this.props.addPerson(id, fname, lname, phone, age, gender);
-    this.setState({ id: this.state.id + 1, fname: '', lname: '', phone: '', age: '', gender: ''});
+      event.preventDefault();
+      const id = this.state.id;
+      const fname = this.state.fname;
+      const lname = this.state.lname;
+      const phone = this.state.phone;
+      const age = this.state.age;
+      const gender = this.state.gender;
+      if (fname === '') {
+          this.setState({
+              helperfname: 'Error',
+          });
+      }
+      if (lname === '') {
+          this.setState({
+              helperlname: 'Error',
+          });
+      }
+      if (phone === '') {
+          this.setState({
+              helperphone: 'Error',
+          });
+      }
+      if (age === '') {
+          this.setState({
+              helperage: 'Error',
+          });
+      }
+      if (fname !== '' && lname !== '' && phone !== '' && age !== '' && gender !== '') {
+        this.props.addPerson(id, fname, lname, phone, age, gender);
+        this.setState({ 
+            id: this.state.id + 1, 
+            fname: '', 
+            lname: '', 
+            phone: '', 
+            age: '', 
+            gender: '',
+        });
+      }
   }
 
   handleClearForm(event){
@@ -74,56 +111,63 @@ class ClientFormComponent extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { 
+      helperfname, 
+      helperlname, 
+      helperphone, 
+      helperage,  
+    } = this.state;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-
+      <form className={classes.container} noValidate={false} autoComplete="off">
         <TextField
           required
+          error={helperfname === 'Error'}
           id="standard-required"
           label="First Name"
           className={classes.textField}
           value={this.state.fname}
           onChange={this.handleChange('fname')}
+          helperText={helperfname}
           margin="normal"
         />
-
         <TextField
           required
+          error={helperlname === 'Error'}
           id="standard-required"
           label="Last Name"
           className={classes.textField}
           value={this.state.lname}
           onChange={this.handleChange('lname')}
+          helperText={helperlname}
           margin="normal"
         />
-
         <TextField
           required
+          error={helperphone === 'Error'}
           id="standard-required"
           label="Phone"
           className={classes.textField}
           value={this.state.phone}
           onChange={this.handleChange('phone')}
+          helperText={helperphone}
           margin="normal"
         />
-
         <TextField
           required
+          error={helperage === 'Error'}
           id="standard-number"
           label="Age"
           value={this.state.age}
           onChange={this.handleChange('age')}
           type="number"
+          inputProps={{ min: 16, max: 100 }}
           className={classes.textField}
+          helperText={helperage}
           margin="normal"
         />
-
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
-            ref={ref => {
-              this.InputLabelRef = ref;
-            }}
             htmlFor="outlined-gender-native-simple"
           >
             Gender
@@ -135,7 +179,7 @@ class ClientFormComponent extends React.Component {
             input={
               <OutlinedInput
                 name="gender"
-                labelWidth={this.state.labelWidth}
+                labelWidth={0}
                 id="outlined-gender-native-simple"
               />
             }
@@ -145,15 +189,12 @@ class ClientFormComponent extends React.Component {
             <option value="Female">Female</option>
           </Select>
         </FormControl>
-
         <div className="addButtonWrapper" onClick={this.formSubmit}>
           <AddButton />
         </div>
-
         <div className="clearButtonWrapper" onClick={this.handleClearForm}>
           <ClearButton />
         </div>
-
       </form>
     );
   }

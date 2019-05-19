@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Layout, NavBar } from './components';
+import { NavBar } from './components';
+import { Layout } from './router';
 import { BrowserRouter } from 'react-router-dom';
 
 class App extends React.Component {
