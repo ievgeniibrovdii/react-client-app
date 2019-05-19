@@ -1,19 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './css/FormStyles';
-import TextField from '@material-ui/core/TextField';
-import AddButton from './AddButton';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import ClearButton from './ClearButton'
+import { 
+  withStyles, 
+  TextField, 
+  InputLabel, 
+  FormControl, 
+  Select, 
+  OutlinedInput, 
+} from '@material-ui/core';
+import { AddButton, ClearButton } from '../';
 
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginTop: 60,
+    marginBottom: 30,
+    marginLeft: 50,
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 225,
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  input: {
+    width: 30,
+  },
+});
 
-class ClientForm extends React.Component {
+class ClientFormComponent extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -124,7 +146,6 @@ class ClientForm extends React.Component {
           </Select>
         </FormControl>
 
-
         <div className="addButtonWrapper" onClick={this.formSubmit}>
           <AddButton />
         </div>
@@ -138,8 +159,8 @@ class ClientForm extends React.Component {
   }
 }
 
-ClientForm.propTypes = {
+ClientFormComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ClientForm);
+export const ClientForm = withStyles(styles)(ClientFormComponent);

@@ -1,20 +1,18 @@
-import React, {Component} from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
-import NavBar from './components/Navbar'
-import Home from './components/Home'
+import * as React from 'react';
+import { Layout, NavBar } from './components';
+import { BrowserRouter } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <Switch>
-            <Route exact path='/' component={Home}/>
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  }
+class App extends React.Component {
+    render() {
+        return (
+            <React.Fragment>
+                <BrowserRouter>
+                    <NavBar />
+                    <Layout />
+                </BrowserRouter>
+            </React.Fragment>
+        );
+    }
 }
 
 export default App;
