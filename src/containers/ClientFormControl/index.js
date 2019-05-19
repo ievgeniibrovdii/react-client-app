@@ -36,79 +36,6 @@ const styles = theme => ({
 });
 
 class ClientFormComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      id: 0,
-      fname: '',
-      lname: '',
-      phone: '',
-      age: '',
-      gender: '',
-      helperfname: '',
-      helperlname: '',
-      helperphone: '',
-      helperage: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.formSubmit = this.formSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
-  }
-
-  handleChange = name => event => {
-    const helper = `helper${name}`;
-    this.setState({ 
-        [helper]: '',
-        [name]: event.target.value, 
-    });
-  };
-
-   formSubmit(event) {
-      event.preventDefault();
-      const id = this.state.id;
-      const fname = this.state.fname;
-      const lname = this.state.lname;
-      const phone = this.state.phone;
-      const age = this.state.age;
-      const gender = this.state.gender;
-      if (fname === '') {
-          this.setState({
-              helperfname: 'Error',
-          });
-      }
-      if (lname === '') {
-          this.setState({
-              helperlname: 'Error',
-          });
-      }
-      if (phone === '') {
-          this.setState({
-              helperphone: 'Error',
-          });
-      }
-      if (age === '') {
-          this.setState({
-              helperage: 'Error',
-          });
-      }
-      if (fname !== '' && lname !== '' && phone !== '' && age !== '' && gender !== '') {
-        this.props.addPerson(id, fname, lname, phone, age, gender);
-        this.setState({ 
-            id: this.state.id + 1, 
-            fname: '', 
-            lname: '', 
-            phone: '', 
-            age: '', 
-            gender: '',
-        });
-      }
-  }
-
-  handleClearForm(event){
-    event.preventDefault();
-    this.setState({ id: this.state.id, fname: '', lname: '', phone: '', age: '', gender: ''});
-  }
-
   render() {
     const { classes } = this.props;
     const { 
@@ -116,7 +43,7 @@ class ClientFormComponent extends React.Component {
       helperlname, 
       helperphone, 
       helperage,  
-    } = this.state;
+    } = this.props.clientInfo;
 
     return (
       <form className={classes.container} noValidate={false} autoComplete="off">
@@ -126,8 +53,8 @@ class ClientFormComponent extends React.Component {
           id="standard-required"
           label="First Name"
           className={classes.textField}
-          value={this.state.fname}
-          onChange={this.handleChange('fname')}
+          value={this.props.clientInfo.fname}
+          onChange={this.props.handleChange('fname')}
           helperText={helperfname}
           margin="normal"
         />
@@ -137,8 +64,8 @@ class ClientFormComponent extends React.Component {
           id="standard-required"
           label="Last Name"
           className={classes.textField}
-          value={this.state.lname}
-          onChange={this.handleChange('lname')}
+          value={this.props.clientInfo.lname}
+          onChange={this.props.handleChange('lname')}
           helperText={helperlname}
           margin="normal"
         />
@@ -148,8 +75,8 @@ class ClientFormComponent extends React.Component {
           id="standard-required"
           label="Phone"
           className={classes.textField}
-          value={this.state.phone}
-          onChange={this.handleChange('phone')}
+          value={this.props.clientInfo.phone}
+          onChange={this.props.handleChange('phone')}
           helperText={helperphone}
           margin="normal"
         />
@@ -158,8 +85,8 @@ class ClientFormComponent extends React.Component {
           error={helperage === 'Error'}
           id="standard-number"
           label="Age"
-          value={this.state.age}
-          onChange={this.handleChange('age')}
+          value={this.props.clientInfo.age}
+          onChange={this.props.handleChange('age')}
           type="number"
           inputProps={{ min: 16, max: 100 }}
           className={classes.textField}
@@ -174,8 +101,8 @@ class ClientFormComponent extends React.Component {
           </InputLabel>
           <Select
             native
-            value={this.state.gender}
-            onChange={this.handleChange('gender')}
+            value={this.props.clientInfo.gender}
+            onChange={this.props.handleChange('gender')}
             input={
               <OutlinedInput
                 name="gender"
@@ -189,10 +116,10 @@ class ClientFormComponent extends React.Component {
             <option value="Female">Female</option>
           </Select>
         </FormControl>
-        <div className="addButtonWrapper" onClick={this.formSubmit}>
+        <div className="addButtonWrapper" onClick={this.props.formSubmit}>
           <AddButton />
         </div>
-        <div className="clearButtonWrapper" onClick={this.handleClearForm}>
+        <div className="clearButtonWrapper" onClick={this.props.handleClearForm}>
           <ClearButton />
         </div>
       </form>

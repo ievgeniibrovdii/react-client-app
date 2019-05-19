@@ -62,21 +62,6 @@ const styles = theme => ({
 });
 
 class CustomizedSelectsComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        title: '-',
-    };
-    this.handleChangeTitle = this.handleChangeTitle.bind(this);
-  }
-
-  handleChangeTitle = event => {
-      event.preventDefault();
-      const sortFieldName = event.target.value;
-      this.setState({ title: sortFieldName });
-      this.props.sortBy(sortFieldName)
-  };
-
   render() {
       const { classes } = this.props;
 
@@ -88,11 +73,11 @@ class CustomizedSelectsComponent extends React.Component {
               </InputLabel>
               <Select
                 selected="selected"
-                value={this.state.title}
-                onChange={this.handleChangeTitle}
+                value={this.props.title}
+                onChange={this.props.handleChangeTitle}
                 input={<BootstrapInput name="title" id="title-customized-select" />}
               >
-                <MenuItem value="-">
+                <MenuItem value="-"> 
                   <em>-</em>
                 </MenuItem>
                 <MenuItem value="fname">First Name</MenuItem>
