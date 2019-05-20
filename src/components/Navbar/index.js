@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  List, 
-  ListItem, 
-  ListItemText, 
-  AppBar, 
-  Toolbar, 
-  Typography, 
+import {
+    List,
+    ListItem,
+    ListItemText,
+    AppBar,
+    Toolbar,
+    Typography,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function NavBarComponent(props) {
         textDecoration: 'none',
         color: 'white'
     }
-  
+
     return (
         <AppBar color="primary" position="static">
             <Toolbar>

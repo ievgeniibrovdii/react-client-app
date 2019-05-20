@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { 
-    Table, 
-    TableBody, 
+import {
+    Table,
+    TableBody,
     TableCell,
     TableHead,
     TableRow,
@@ -33,11 +33,11 @@ export const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 class SimpleTableComponent extends React.Component {
-  render() {
-      const { classes } = this.props;
-      
-      return (
-          <div className="clientTable">
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <div className="clientTable">
                 <React.Fragment>
                     <Paper className={classes.root}>
                         <Table className={classes.table}>
@@ -70,7 +70,7 @@ class SimpleTableComponent extends React.Component {
                         </Table>
                     </Paper>
                 </React.Fragment>
-          </div>
+            </div>
         );
     }
 }
