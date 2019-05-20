@@ -181,13 +181,25 @@ class HomeComponent extends React.Component {
     }
 
     render() {
+        const clientInfo = {
+            id: this.state.id,
+            fname: this.state.fname,
+            lname: this.state.lname,
+            phone: this.state.phone,
+            age: this.state.age,
+            gender: this.state.gender,
+            helperfname: this.state.helperfname,
+            helperlname: this.state.helperlname,
+            helperphone: this.state.helperphone,
+            helperage: this.state.helperage,
+        }
         return (
             <React.Fragment>
                 <ClientForm
                     handleChange={this.handleChange}
                     formSubmit={this.formSubmit}
                     handleClearForm={this.handleClearForm}
-                    clientInfo={this.state}
+                    clientInfo={clientInfo}
                 />
                 { this.state.people.length ? (
                     <React.Fragment>

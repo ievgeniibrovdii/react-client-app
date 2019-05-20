@@ -49,7 +49,7 @@ class ClientFormComponent extends React.Component {
             <form className={classes.container} noValidate={false} autoComplete="off">
                 <TextField
                     required={true}
-                    error={helperfname === 'Error'}
+                    error={helperfname === 'First Name field should not be empty' || helperfname === 'Value of Name is wrong'}
                     id="standard-required"
                     label="First Name"
                     className={classes.textField}
@@ -60,7 +60,7 @@ class ClientFormComponent extends React.Component {
                 />
                 <TextField
                     required={true}
-                    error={helperlname === 'Error'}
+                    error={helperlname === 'Last Name field should not be empty' || helperlname === 'Value of Last Name is wrong'}
                     id="standard-required"
                     label="Last Name"
                     className={classes.textField}
@@ -71,7 +71,7 @@ class ClientFormComponent extends React.Component {
                 />
                 <TextField
                     required={true}
-                    error={helperphone === 'Error'}
+                    error={helperphone === 'Phone field should not be empty' || helperphone === 'Value of Phone is wrong'}
                     id="standard-required"
                     label="Phone"
                     className={classes.textField}
@@ -82,12 +82,11 @@ class ClientFormComponent extends React.Component {
                 />
                 <TextField
                     required={true}
-                    error={helperage === 'Error'}
+                    error={helperage === 'Age field should not be empty' || helperage === 'Value of Age is wrong'}
                     id="standard-number"
                     label="Age"
                     value={this.props.clientInfo.age}
                     onChange={this.props.handleChange('age')}
-                    inputProps={{ min: 16, max: 100 }}
                     className={classes.textField}
                     helperText={helperage}
                     margin="normal"
